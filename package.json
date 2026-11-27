@@ -1,0 +1,12 @@
+{
+  "name": "multi-calendar",
+  "version": "1.0.0",
+  "private": true,
+  "description": "ICT융합공학 기말 팀과제 - 다용도 캘린더",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}

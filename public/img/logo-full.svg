@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 330 80" width="330" height="80">
+  <g transform="translate(8 8)">
+    <rect x="4" y="8" width="56" height="52" rx="13" fill="#1f2a44"/>
+    <rect x="17" y="3" width="6" height="12" rx="3" fill="#1f2a44" stroke="#ffffff" stroke-width="2.5"/>
+    <rect x="41" y="3" width="6" height="12" rx="3" fill="#1f2a44" stroke="#ffffff" stroke-width="2.5"/>
+    <rect x="11" y="19" width="19.5" height="17" rx="5" fill="#4F8EF7"/>
+    <rect x="33.5" y="19" width="19.5" height="17" rx="5" fill="#F2994A"/>
+    <rect x="11" y="39" width="19.5" height="15" rx="5" fill="#27AE60"/>
+    <rect x="33.5" y="39" width="19.5" height="15" rx="5" fill="#9B51E0"/>
+    <circle cx="20.75" cy="27.5" r="3.4" fill="#ffffff"/>
+    <path d="M38.5 25 h9.5 M38.5 30 h6" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round"/>
+    <path d="M16 46.5 l3.5 3.5 l6.5 -7" fill="none" stroke="#ffffff" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="43.25" cy="46.5" r="4.6" fill="none" stroke="#ffffff" stroke-width="2.4"/>
+    <path d="M43.25 44.3 v4.4" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round"/>
+  </g>
+  <text x="86" y="43" font-family="Pretendard, 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', sans-serif" font-size="27" font-weight="800" fill="#1f2a44">다용도 캘린더</text>
+  <text x="87" y="63" font-family="Pretendard, 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', sans-serif" font-size="11.5" font-weight="600" letter-spacing="1.6" fill="#8a90a0">일정 · 과제 · 습관 · 지출</text>
+</svg>

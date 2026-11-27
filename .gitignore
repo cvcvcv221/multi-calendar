@@ -1,0 +1,12 @@
+# 설치된 모듈 (npm install로 각자 설치)
+node_modules/
+
+# 각자 컴퓨터에서 저장된 데이터 (서로 덮어쓰지 않게 올리지 않음)
+data.json
+
+# 맥/윈도우 시스템 파일
+.DS_Store
+Thumbs.db
+
+# 임시 파일
+.trash_tmp/
