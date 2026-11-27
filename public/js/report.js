@@ -18,6 +18,7 @@ function renderSummary() {
   }
 
   let output = `<p class="greeting">${greeting}<span class="sub">${formatDateKor(today)}</span></p>`;
+  output += makeFocusHtml(); // 지금 할 일 추천 (smart.js)
 
   // 오늘 일정 중 다음 일정
   const schedules = itemsOn(today).filter((ev) => ev.type === 'schedule');
