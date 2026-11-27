@@ -13,6 +13,7 @@ function renderCalendar() {
   }
   document.getElementById('monthViewBtn').className = viewMode === 'month' ? 'seg on' : 'seg';
   document.getElementById('weekViewBtn').className = viewMode === 'week' ? 'seg on' : 'seg';
+  renderHeatLegend(); // smart.js
 }
 
 // ---------- 월간 보기 ----------
@@ -56,6 +57,7 @@ function makeMonthCell(date, today) {
   if (date.getMonth() !== viewMonth) className += ' other';
   if (dateStr === today) className += ' today';
   if (dateStr === selectedDate) className += ' selected';
+  className += heatClass(dateStr); // 바쁨 지도 (smart.js)
 
   let numClass = 'day-num ' + dayColorClass(date.getDay());
   if (holiday !== '') numClass += ' holiday';
@@ -154,6 +156,7 @@ function renderWeek() {
     let className = 'week-col';
     if (dateStr === today) className += ' today';
     if (dateStr === selectedDate) className += ' selected';
+    className += heatClass(dateStr); // 바쁨 지도 (smart.js)
 
     output += `<div class="${className}" onclick="selectDate('${dateStr}')">`;
     output += `<div class="week-head ${dayColorClass(i)}${holiday !== '' ? ' holiday' : ''}">`;

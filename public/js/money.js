@@ -37,6 +37,7 @@ function renderMoneyCard() {
     output += `<p class="sub">${percent.toFixed(0)}% 사용 · 남은 돈 ${formatMoney(data.budget - total)}원</p>`;
   }
   output += '</div>';
+  output += makePaceHtml(total); // 지출 페이스 (smart.js)
 
   // ----- 분류별 막대그래프 (많이 쓴 순서) -----
   const rows = [];

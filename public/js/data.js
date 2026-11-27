@@ -87,6 +87,7 @@ let searchText = '';
 let undoStack = [];      // 되돌리기용 : 삭제한 항목을 쌓아 둔다
 let changeCount = 0;     // 저장하지 않은 변경 수
 let serverMode = false;  // 서버로 실행했는지
+let heatOn = false;      // 바쁨 지도 켜짐 (smart.js)
 
 // ---------- 날짜 함수 ----------
 
@@ -196,6 +197,7 @@ class CalendarItem {
     this.amount = 0;           // 지출: 금액
     this.category = '식비';    // 지출: 분류
     this.memo = '';
+    this.planFor = 0;          // 거꾸로 계획으로 만든 준비 일정이면 그 과제의 id (smart.js)
   }
 
   // 여러 날 일정의 길이 (0이면 하루 일정)

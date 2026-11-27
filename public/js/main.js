@@ -12,6 +12,7 @@ function render() {
   renderSearch();       // schedule.js (B)
   renderSummary();      // report.js   (C)
   renderHabitCard();    // habit.js    (C)
+  renderGrass();        // smart.js
   renderMoneyCard();    // money.js    (C)
   renderReport();       // report.js   (C)
 }
@@ -119,6 +120,7 @@ window.onload = function () {
   initSchedule();
   initHabit();
   initMoney();
+  initSmart();
   document.getElementById('themeBtn').onclick = function () { toggleTheme(); };
   document.getElementById('undoBtn').onclick = function () { undo(); };
 

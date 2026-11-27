@@ -61,6 +61,9 @@ function makeItem(ev) {
   if (sub !== '') html += `<div class="item-sub">${sub}</div>`;
   html += '</div>';
 
+  if (ev.type === 'task' && !ev.done && getDday(ev.date) > 0) {
+    html += `<button class="icon-btn" onclick="planBackward(${ev.id})" title="거꾸로 계획 : 덜 바쁜 날에 준비 일정 자동 배치">🧭</button>`;
+  }
   html += `<button class="icon-btn" onclick="openEditModal(${ev.id})" title="수정">✏️</button>`;
   html += `<button class="icon-btn" onclick="deleteEvent(${ev.id})" title="삭제">🗑️</button>`;
   html += '</li>';
@@ -97,6 +100,9 @@ function makeItemSub(ev) {
   }
   if (ev.type === 'expense') {
     parts.push(ev.category);
+  }
+  if (ev.type === 'task' && planItemsOf(ev.id).length > 0) {
+    parts.push('🧭 준비 일정 ' + planItemsOf(ev.id).length + '개'); // smart.js
   }
   if (ev.memo !== '') {
     parts.push(escapeText(ev.memo));
