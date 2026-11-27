@@ -4,6 +4,16 @@
 교재 『자바스크립트 프로그래밍 입문 2판』(윤인성) 범위의 문법만 사용했습니다.
 
 ### 🔗 바로 써 보기 : **https://cvcvcv221.github.io/multi-calendar/**
+
+| 버전 | 차별점 | 링크 |
+|---|---|---|
+| 기본 | 일정·과제·습관·지출 + 거꾸로 계획 등 | [열기](https://cvcvcv221.github.io/multi-calendar/public/) |
+| 🧪 멀티캘린더 1 | ⏰ 시간표 기반 팀플 시간 찾기 (vs When2meet) | [열기](https://cvcvcv221.github.io/multi-calendar/multi-calendar1/) |
+| 🧪 멀티캘린더 2 | ⛈️ 과부하 예보 (vs 구글 캘린더) | [열기](https://cvcvcv221.github.io/multi-calendar/multi-calendar2/) |
+| 🧪 멀티캘린더 3 | 💸 시간 = 돈 (vs 가계부 앱) | [열기](https://cvcvcv221.github.io/multi-calendar/multi-calendar3/) |
+| 🧪 멀티캘린더 4 | 🧘 바쁜 날 습관 자동 조절 (vs 습관 앱) | [열기](https://cvcvcv221.github.io/multi-calendar/multi-calendar4/) |
+
+> 실험 버전은 `experiments` 브랜치에 있어요. 각 폴더의 `js/extra.js`가 그 버전의 새 기능이고, 기존 파일에는 연결 코드만 추가했어요.
 > 웹에서는 예시 데이터로 체험만 할 수 있어요. (저장은 `npm start`로 실행했을 때만)
 
 ## 👥 협업 방법

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>다용도 캘린더 2 · 과부하 예보</title>
+  <link rel="icon" href="img/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- ===== 상단 ===== -->
+  <header class="topbar">
+    <div class="brand">
+      <h1><img src="img/logo.svg" alt="" class="logo"> 다용도 캘린더</h1>
+      <p class="sub">일정 · 과제 · 습관 · 지출을 한 달력에</p>
+    </div>
+    <div class="toolbar">
+      <span id="clock" class="clock"></span>
+      <button id="undoBtn" class="ghost" style="display: none;">↩️ 되돌리기</button>
+      <button id="themeBtn" class="ghost" title="다크 모드">🌙</button>
+      <!-- 저장 : form을 서버로 보내면 server.js가 data.json 파일에 쓴다 -->
+      <form action="/save" method="post" onsubmit="return prepareSave()">
+        <input type="hidden" name="data" id="saveData">
+        <button type="submit" id="saveBtn2" class="ghost">💾 저장됨</button>
+      </form>
+    </div>
+  </header>
+
+  <!-- ===== 실험 버전 안내 ===== -->
+  <div class="variant-banner"><b>🧪 멀티캘린더 2 · 과부하 예보</b><span>앞으로 5주를 날씨로 예보해요. 시험·과제가 몰리는 주를 미리 알려 주고, 한가한 날로 준비를 앞당겨 줘요.</span><a href="../">다른 버전 보기 →</a></div>
+
+  <!-- ===== 모드 버튼 + 검색 ===== -->
+  <div class="controls">
+    <nav id="modeBar" class="mode-bar"></nav>
+    <input id="searchInput" class="search" type="text" placeholder="🔍 제목·메모 검색" onkeyup="onSearch(this.value)">
+  </div>
+
+  <main class="layout">
+    <!-- ===== 왼쪽 ===== -->
+    <section class="main-col">
+      <!-- 달력 (A 담당) -->
+      <div class="card calendar-card">
+        <div class="calendar-nav">
+          <div class="month-nav">
+            <button id="prevBtn">◀</button>
+            <h2 id="monthTitle"></h2>
+            <button id="nextBtn">▶</button>
+            <button id="todayBtn" class="ghost">오늘</button>
+          </div>
+          <div class="view-tools">
+            <button id="heatBtn" class="ghost" title="바쁨 지도 : 그날 얼마나 바쁜지 색으로 보기">🌡️ 바쁨 지도</button>
+            <div class="segmented">
+              <button id="monthViewBtn" class="seg on">월간</button>
+              <button id="weekViewBtn" class="seg">주간</button>
+            </div>
+          </div>
+        </div>
+        <div id="heatLegend" class="heat-legend" style="display: none;"></div>
+        <div id="calendarGrid" class="calendar-grid month"></div>
+      </div>
+
+      <!-- 실험 기능 (extra.js) -->
+      <div id="extraCard" class="card extra-card"></div>
+
+      <div class="bottom-cards">
+        <!-- 습관 트래커 (C 담당) -->
+        <div class="card">
+          <div class="card-head">
+            <h3>✅ 습관 트래커 <span class="sub">최근 7일 · 칸을 눌러 체크</span></h3>
+            <button id="addHabitBtn" class="small">+ 습관</button>
+          </div>
+          <div id="habitBoard"></div>
+          <div id="habitGrass"></div>
+        </div>
+
+        <!-- 지출 (C 담당) -->
+        <div class="card">
+          <div class="card-head">
+            <h3>💰 이번 달 지출</h3>
+            <button id="budgetBtn" class="small">예산 설정</button>
+          </div>
+          <div id="moneyBoard"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 오른쪽 사이드바 ===== -->
+    <aside class="sidebar">
+      <!-- 검색 결과 (B 담당) : 검색할 때만 보임 -->
+      <div id="searchCard" class="card" style="display: none;">
+        <h3 id="searchTitle"></h3>
+        <ul id="searchList" class="mini-list"></ul>
+      </div>
+
+      <!-- 오늘 요약 (C 담당) -->
+      <div class="card">
+        <div id="todaySummary" class="summary"></div>
+      </div>
+
+      <!-- 선택한 날짜 (B 담당) -->
+      <div class="card">
+        <h3 id="dayTitle"></h3>
+        <div class="quick-add">
+          <button id="addScheduleBtn" class="small">+ 일정</button>
+          <button id="addTaskBtn" class="small">+ 과제</button>
+          <button id="addExpenseBtn" class="small">+ 지출</button>
+        </div>
+        <div id="dayList"></div>
+      </div>
+
+      <!-- 이번 달 리포트 (C 담당) -->
+      <div class="card">
+        <h3 id="reportTitle">📊 리포트</h3>
+        <div id="monthStats" class="stats"></div>
+      </div>
+    </aside>
+  </main>
+
+  <!-- ===== 추가/수정 창 (B 담당) ===== -->
+  <div id="modal" class="modal">
+    <div class="modal-box">
+      <h3 id="modalTitle">항목 추가</h3>
+
+      <label>종류
+        <select id="fType">
+          <option value="schedule">📅 일정</option>
+          <option value="task">📝 과제·시험</option>
+          <option value="expense">💰 지출</option>
+        </select>
+      </label>
+      <label>제목 <input id="fTitle" type="text" maxlength="50"></label>
+
+      <div class="form-row">
+        <label><span id="labelDate">시작일</span> <input id="fDate" type="date"></label>
+        <label id="rowEndDate">종료일 <input id="fEndDate" type="date"></label>
+      </div>
+      <div class="form-row">
+        <label id="rowTime">시간 (비우면 종일) <input id="fTime" type="time"></label>
+        <label id="rowColor">색상 <select id="fColor"></select></label>
+      </div>
+      <label id="rowRepeat">반복 <select id="fRepeat"></select></label>
+      <label id="rowPriority">중요도 <select id="fPriority"></select></label>
+      <div class="form-row">
+        <label id="rowAmount">금액(원) <input id="fAmount" type="number" min="0" step="100" placeholder="5500"></label>
+        <label id="rowCategory">분류 <select id="fCategory"></select></label>
+      </div>
+      <label>메모 <input id="fMemo" type="text" maxlength="100" placeholder="선택 사항"></label>
+
+      <div class="modal-actions">
+        <button id="cancelBtn" class="ghost">취소</button>
+        <button id="saveBtn" class="primary">저장</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast"></div>
+
+  <!-- 서버로 실행하면 저장된 데이터(savedData)를 불러온다. 파일로 열면 없어도 괜찮다 -->
+  <script src="saved-data.js"></script>
+  <!-- 순서 중요 : 공통 데이터 → 각 기능 → 시작(main.js) -->
+  <script src="js/data.js"></script>
+  <script src="js/calendar.js"></script>
+  <script src="js/schedule.js"></script>
+  <script src="js/habit.js"></script>
+  <script src="js/money.js"></script>
+  <script src="js/report.js"></script>
+  <script src="js/smart.js"></script>
+  <script src="js/extra.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

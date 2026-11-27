@@ -2,11 +2,79 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <title>다용도 캘린더</title>
-  <!-- GitHub Pages 첫 화면 : public 폴더의 웹페이지로 이동 -->
-  <meta http-equiv="refresh" content="0; url=public/index.html">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>다용도 캘린더 · 버전 고르기</title>
+  <link rel="icon" href="public/img/logo.svg" type="image/svg+xml">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif; background: #f4f6fb; color: #1f2430; padding: 40px 20px; }
+    .wrap { max-width: 1000px; margin: 0 auto; }
+    header { display: flex; align-items: center; gap: 14px; margin-bottom: 8px; }
+    header img { width: 48px; height: 48px; }
+    h1 { font-size: 30px; }
+    .lead { color: #8a90a0; margin-bottom: 28px; line-height: 1.6; }
+    .base { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; background: #fff; border: 1px solid #e6e8f0; border-radius: 16px; padding: 20px 22px; margin-bottom: 24px; text-decoration: none; color: inherit; }
+    .base:hover, .card:hover { border-color: #4F8EF7; box-shadow: 0 6px 20px rgba(79, 142, 247, 0.15); }
+    .base b { font-size: 18px; }
+    .base p { color: #8a90a0; font-size: 14px; margin-top: 4px; }
+    .go { background: #4F8EF7; color: #fff; padding: 10px 16px; border-radius: 10px; font-weight: 700; white-space: nowrap; }
+    h2 { font-size: 18px; margin-bottom: 12px; }
+    .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+    .card { background: #fff; border: 1px solid #e6e8f0; border-radius: 16px; padding: 22px; text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: 8px; }
+    .num { font-size: 13px; font-weight: 700; color: #4F8EF7; }
+    .icon { font-size: 40px; }
+    .card b { font-size: 20px; }
+    .card p { color: #5b6170; font-size: 14px; line-height: 1.6; }
+    .vs { font-size: 13px; color: #8a90a0; border-top: 1px dashed #e6e8f0; padding-top: 8px; margin-top: auto; }
+    .card .go { align-self: flex-start; margin-top: 6px; }
+    footer { color: #8a90a0; font-size: 13px; margin-top: 28px; line-height: 1.7; }
+    footer a { color: #4F8EF7; }
+    @media (max-width: 700px) { .grid { grid-template-columns: 1fr; } h1 { font-size: 24px; } }
+  </style>
 </head>
 <body>
-  <a href="public/index.html">다용도 캘린더 열기</a>
+  <div class="wrap">
+    <header><img src="public/img/logo.svg" alt=""><h1>다용도 캘린더</h1></header>
+    <p class="lead">ICT융합공학 기말 팀과제 · 일정, 과제, 습관, 지출을 한 달력에서 관리해요.<br>
+      다른 캘린더와 확실히 다른 점을 찾기 위해 기능을 하나씩 붙인 실험 버전 4개를 만들었어요. 써 보고 골라 주세요!</p>
+
+    <a class="base" href="public/index.html">
+      <div><b>📅 기본 버전</b><p>일정·과제·습관·지출 + 거꾸로 계획, 바쁨 지도, 지출 페이스, 습관 잔디, 지금 할 일 추천</p></div>
+      <span class="go">열기 →</span>
+    </a>
+
+    <h2>🧪 실험 버전</h2>
+    <div class="grid">
+      <a class="card" href="multi-calendar1/index.html">
+        <span class="num">멀티캘린더 1</span><span class="icon">⏰</span><b>팀플 시간 찾기</b>
+        <p>내 수업 시간표와 일정, 팀원 시간표를 겹쳐서 다 같이 되는 시간 TOP 3를 바로 추천해요. 누르면 회의가 캘린더에 들어가요.</p>
+        <span class="vs">vs When2meet : 매번 가능한 시간을 칠할 필요가 없음</span>
+        <span class="go">열기 →</span>
+      </a>
+      <a class="card" href="multi-calendar2/index.html">
+        <span class="num">멀티캘린더 2</span><span class="icon">⛈️</span><b>과부하 예보</b>
+        <p>앞으로 5주를 날씨로 예보해요. 시험·과제가 몰리는 주를 미리 경고하고, 버튼 하나로 한가한 날에 준비를 앞당겨요.</p>
+        <span class="vs">vs 구글 캘린더 : 적어 두기만 하지 않고 미리 판단해 줌</span>
+        <span class="go">열기 →</span>
+      </a>
+      <a class="card" href="multi-calendar3/index.html">
+        <span class="num">멀티캘린더 3</span><span class="icon">💸</span><b>시간 = 돈</b>
+        <p>알바 일정에 시급을 넣으면 이번 달 예상 수입이 나오고, 모든 지출을 "알바 몇 시간어치"로 바꿔 보여 줘요.</p>
+        <span class="vs">vs 가계부 앱 : 돈과 시간(알바 일정)을 연결</span>
+        <span class="go">열기 →</span>
+      </a>
+      <a class="card" href="multi-calendar4/index.html">
+        <span class="num">멀티캘린더 4</span><span class="icon">🧘</span><b>바쁜 날 습관 자동 조절</b>
+        <p>일정이 많은 날엔 습관 목표를 1개로 줄이고, 못 한 습관도 🛡️로 연속 기록을 지켜 줘요.</p>
+        <span class="vs">vs 습관 앱 : 바쁜 주에 기록이 끊겨 포기하는 문제를 일정과 연결해 해결</span>
+        <span class="go">열기 →</span>
+      </a>
+    </div>
+
+    <footer>
+      웹에서는 예시 데이터로 체험만 할 수 있어요. 저장까지 하려면 저장소를 받아서 <code>npm start</code>로 실행하세요.<br>
+      실험 버전 코드는 모두 AI(Claude)가 생성했어요 · 기록은 <a href="https://github.com/cvcvcv221/multi-calendar/blob/experiments/docs/AI_USAGE.md">docs/AI_USAGE.md</a>
+    </footer>
+  </div>
 </body>
 </html>
