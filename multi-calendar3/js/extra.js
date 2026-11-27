@@ -87,7 +87,7 @@ function renderExtra() {
   html += '</div>';
 
   // 지출을 시간으로
-  const sorted = expenses.slice();
+  const sorted = [].concat(expenses); // 원본을 바꾸지 않게 복사
   sorted.sort((a, b) => b.amount - a.amount);
   if (sorted.length > 0) {
     let maxHours = Number(workHoursFor(sorted[0].amount));

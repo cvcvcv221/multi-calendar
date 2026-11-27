@@ -165,9 +165,9 @@ function renderExtra() {
     const before = prepDays(storm.start);
     let tip = '';
     if (before.length > 0) {
-      const sorted = before.slice();
+      const sorted = [].concat(before); // 원본을 바꾸지 않게 복사
       sorted.sort((a, b) => busyScore(a) - busyScore(b));
-      tip = `가장 한가한 날은 <b>${sorted.slice(0, 2).map((d) => formatDateKor(d)).join(', ')}</b>이에요.`;
+      tip = `가장 한가한 날은 <b>${sorted.filter((d, i) => i < 2).map((d) => formatDateKor(d)).join(', ')}</b>이에요.`;
     } else {
       tip = '이번 주라서 앞당길 날이 없어요. 마감 전 한가한 날에 나눠 배치할게요.';
     }

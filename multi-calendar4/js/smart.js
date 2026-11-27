@@ -103,7 +103,7 @@ function planBackward(taskId) {
   });
 
   // 앞에서 count개 고르고 날짜순으로 다시 정렬
-  const picked = days.slice(0, count);
+  const picked = days.filter((day, index) => index < count);
   picked.sort((a, b) => (a.date < b.date ? -1 : 1));
 
   picked.forEach((day, index) => {
