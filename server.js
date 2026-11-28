@@ -47,6 +47,9 @@ app.post('/save', (request, response) => {
   }
 });
 
+// 🚆🚌 기차·버스 정보 (transit-api.js, .env의 API 키 사용)
+require('./transit-api')(app);
+
 // 서버를 실행합니다.
 app.listen(52273, () => {
   console.log('Server running at http://127.0.0.1:52273');
