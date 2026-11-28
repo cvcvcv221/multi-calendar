@@ -76,6 +76,10 @@
           <div id="moneyBoard"></div>
         </div>
       </div>
+
+      <!-- 🚆 교통 정보 (transit.js) : 서버가 공공데이터포털 API를 대신 불러 준다 -->
+      <div id="transitCard" class="card transit-card"></div>
+      <iframe id="apiFrame" title="교통 정보 요청" style="display: none;"></iframe>
     </section>
 
     <!-- ===== 오른쪽 사이드바 ===== -->
@@ -159,6 +163,7 @@
   <script src="js/money.js"></script>
   <script src="js/report.js"></script>
   <script src="js/smart.js"></script>
+  <script src="js/transit.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>
